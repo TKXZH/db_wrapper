@@ -1,16 +1,14 @@
 pipeline {
-    agent {
-        docker { image 'node:7-alpine' }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
                 sh 'sh gradlew build'
             }
         }
-        stage('Node') {
+        stage('Env') {
             steps {
-                sh 'node --version'
+                sh 'printenv'
             }
         }
         stage('Test') {
