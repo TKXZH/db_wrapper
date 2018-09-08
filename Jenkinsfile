@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'free'
+                sh 'free -h'
             }
         }
         stage('final') {
@@ -16,5 +16,10 @@ pipeline {
                 sh 'ps -ef'
             }
         }
+    }
+    post {
+         success {
+                    echo 'This will run only if successful'
+         }
     }
 }
