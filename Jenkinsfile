@@ -1,13 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Deploy') {
+        stage('Build') {
             steps {
-                timeout(time: 1, unit: 'MINUTES') {
-                    sh './gradlew build'
-                }
+                sh 'echo "Hello World"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    ls -lah
+                '''
             }
-            sh 'ls -lh'
         }
     }
 }
