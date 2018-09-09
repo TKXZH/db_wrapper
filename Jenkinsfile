@@ -1,3 +1,4 @@
+#!groovy
 pipeline {
     agent any
     environment {
@@ -22,7 +23,7 @@ pipeline {
         }
         stage('final') {
             steps {
-                sh 'ps -ef'
+                input "Does the staging environment look ok?"
             }
         }
     }
