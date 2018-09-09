@@ -1,14 +1,34 @@
 pipeline {
     agent any
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
+                sh 'sh gradlew build'
             }
         }
+        stage('Env') {
+            steps {
+                sh 'printenv'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'free -h'
+            }
+        }
+        stage('final') {
+            steps {
+                sh 'ps -ef'
+            }
+        }
+    }
+    post {
+         success {
+                    echo 'This will run only if successful'
+         }
     }
 }
