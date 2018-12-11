@@ -42,8 +42,11 @@ public class SqlExecutor {
 		Class.forName(driverName);
 		connection = DriverManager.getConnection(url, userName, passWord);
 		Statement statement = connection.createStatement();
-		System.out.println("now executing sql " + sql);
-		statement.execute(sql);
+		String[] sqlList = sql.split(";");
+		for(String subSql : sqlList) {
+			System.out.println("now executing sql " + sql);
+			statement.execute(subSql);
+		}
 		statement.close();
 		connection.close();
 	}
